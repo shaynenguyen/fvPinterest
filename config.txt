@@ -1,0 +1,3 @@
+username: fpvPinterest
+password: ZLjSLzz0uuE6PxXy
+database: fpvPinterest
