@@ -1,0 +1,11 @@
+<!-- Child Template -->
+{% extends 'layout.html' %}
+
+<!-- Overplay Page Template -->
+{% block title %} {{ title }} {% endblock %}
+
+<!-- Display Content -->
+{%block content %} {% for key, value in data %} {{ value }} {% endfor %}
+
+<!-- END Display Content -->
+{% endblock %}
