@@ -5,7 +5,7 @@
 {% block title %} {{ title }} {% endblock %}
 
 <!-- Display Content -->
-{%block content %} {% for key, value in data %} {{ value }} {% endfor %}
+{%block content %} {% for key, value in data.items() %} {{ value }} {% endfor %}
 
 <!-- END Display Content -->
 {% endblock %}
