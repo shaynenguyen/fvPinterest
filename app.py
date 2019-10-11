@@ -16,5 +16,5 @@ def home():
 
 if __name__ ==  '__main__':
     # Remove the next line when in production
-    app.config['DEBUG'] = True 
-    app.run(host='0.0.0.0', port=5000)
+    # app.config['DEBUG'] = True 
+    app.run(host='0.0.0.0', port=5000,debug=True)

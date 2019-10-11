@@ -13,7 +13,10 @@
 
 <body>
     <!-- Header -->
-    {% include './components/header.html' %} {% block content%} {% endblock %}
+    {% include './components/header.html' %}
+
+    <!-- MAIN CONTENT GOES HERE -->
+    {% block content%} {% endblock %}
 
     <!-- Embedded scripts -->
     {% include './components/scripts.html' %}
