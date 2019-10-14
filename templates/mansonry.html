@@ -1,0 +1,29 @@
+<!-- Child Template -->
+{% extends '_layout.html' %}
+
+<!-- Addition files -->
+<!-- ------------- Stylesheets -->
+{% block stylesheets %}
+<link href="{{ url_for('static', filename= 'css/m-masonry.css') }}" rel="stylesheet"> {% endblock %}
+<!-- ------------- Scripts -->
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename= 'js/addons/masonry.pkgd.min.js') }}"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename= 'js/m-masonry.js') }}"></script>
+{% endblock %}
+<!-- Overplay Page Template -->
+{% block title %} {{ title }} {% endblock %}
+
+<!-- Display Content -->
+{%block content %}
+<div class="grid">
+    <div class="grid-sizer"></div>
+    {% for key, value in data.items() %}
+    <div class="grid-item pr-4 pb-4">
+        <img src="https://mdbootstrap.com/img/Photos/Others/food3.jpg" alt="{{ value }}" />
+    </div>
+
+    {% endfor %}
+</div>
+<!-- END Display Content -->
+{% endblock %}

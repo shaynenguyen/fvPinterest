@@ -8,6 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Embedded stylesheets -->
     {% include './components/styles.html' %}
+
+    <!-- Addition stylesheet goes here -->
+    {% block stylesheets %}{% endblock %}
+
     <title>{% block title %} |{% endblock %} fvPinterest</title>
 </head>
 
@@ -16,10 +20,22 @@
     {% include './components/header.html' %}
 
     <!-- MAIN CONTENT GOES HERE -->
-    {% block content%} {% endblock %}
+    <div class="">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+
+                </div>
+            </nav>
+            <main class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+                <h1 class="my-4 font-weight-bold">{{ title }}</h1>
+                {% block content%} {% endblock %}
+            </main>
+        </div>
+    </div>
 
     <!-- Embedded scripts -->
-    {% include './components/scripts.html' %}
+    {% include './components/scripts.html' %} {% block scripts %}{% endblock %}
 
     <!-- Footer -->
     {% include './components/footer.html' %}
