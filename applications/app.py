@@ -1,5 +1,9 @@
 from flask import Blueprint, render_template, request
 
+# From features
+from features.database import session
+from features.models import Dataset
+
 # App
 app = Blueprint(
                     'app',
@@ -21,7 +25,10 @@ def mansonry():
         'images': 'Yes all images',
         'source': 'mdboostrap.com',
         'addition': 'https://imagesloaded.desandro.com/',
-        'imagest': 'cdn images'
+        'imagest': 'cdn images',
+        'music': 'None',
+        'nextLine': 'Yes, It can',
+        'Again': 'No way!'
     }
 
     return render_template('mansonry.html', title='Masonry - images options',data = data)
