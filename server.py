@@ -1,16 +1,26 @@
-from flask import Flask, render_template, request
-from applications.app import app
+from flask import Flask, render_template, jsonify
+from flask_cors import CORS
+from random import *
 
-server = Flask(
-            __name__,
-            static_url_path =   '',
-            static_folder   =   'static'
-            )
 
-server.register_blueprint(app, url_prefix='/')
+app = Flask(__name__,
+            static_folder   = './dist/static',
+            template_folder = './dist')
 
-# Server Start Here
-if __name__ ==  '__main__':
-    # Remove the next line when in production
-    # app.config['DEBUG'] = True 
-    server.run(host='0.0.0.0', port=5000,debug=True)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+@app.route('/api/random')
+def random_number():
+    response = {
+        'randomNumber': randint(1, 100)
+    }
+    return jsonify(response)
+
+@app.route('/', defaults={'path':''})
+@app.route('/<path:path>')
+def catch_all(path):
+    if app.debug:
+        return requests.get('http://localhost:8080/{}'.format(path)).text
+    return render_template("index.html")
+
+# https://codeburst.io/full-stack-single-page-application-with-vue-js-and-flask-b1e036315532
