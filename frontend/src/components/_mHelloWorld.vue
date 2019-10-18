@@ -1,12 +1,12 @@
 <template>
-    <div class="hello">
-        <h3>I am manual HelloWorld component</h3>
+    <div class="hello" style="minHeight:75vh">
+        <h3>mHelloWorld <br/> component</h3>
     </div>
 </template>
 
 <script>
 export default {
-    name: "mHelloWorld"
+    name: 'mHelloWorld'
 }
 </script>
 
