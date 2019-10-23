@@ -9,9 +9,9 @@
             <mdb-navbar-nav>
                 <mdb-nav-item href="/">Home</mdb-nav-item>
                 <mdb-nav-item href="/about">About</mdb-nav-item>
-                <mdb-nav-item href="/images">Images</mdb-nav-item>
+                <mdb-nav-item href="/pinterest">Pinterest</mdb-nav-item>
                 <mdb-dropdown tag="li" class="nav-item">
-                    <mdb-dropdown-toggle tag="a" navLink color="warning" slot="toggle" waves-fixed>Dropdown</mdb-dropdown-toggle>
+                    <mdb-dropdown-toggle tag="a" navLink color="warning" slot="toggle" waves-fixed>Others</mdb-dropdown-toggle>
                     <mdb-dropdown-menu>
                         <mdb-dropdown-item>Action</mdb-dropdown-item>
                         <mdb-dropdown-item>Another action</mdb-dropdown-item>
