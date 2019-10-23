@@ -1,6 +1,10 @@
 from PIL import Image
+import pandas as pd
 import os
 
+# Database Stuff
+from database import engine, session
+from models import Images
 
 # Declaration
 path = '../data'
@@ -19,3 +23,9 @@ for img in listImages:
 
 print(listWidth)
 print(listhHeight)
+
+# Create Dataframe
+df = pd.DataFrame(zip(listImages, listWidth, listhHeight), columns=['name','width','height'])
+print(df)
+
+df.to_sql(name='images', con=engine, if_exists='replace', index=True)
