@@ -1,7 +1,8 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_from_directory
 from flask_cors import CORS
 from random import *
 import requests
+from backend.api import api
 
 
 app = Flask(__name__,
@@ -9,6 +10,7 @@ app = Flask(__name__,
             template_folder = './dist')
 
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+app.register_blueprint(api, url_prefix='/api')
 
 @app.route('/api/random')
 def random_number():
@@ -16,6 +18,10 @@ def random_number():
         'randomNumber': randint(1, 100)
     }
     return jsonify(response)
+
+@app.route('/<path:filename>')
+def send_file(filename):
+    return send_from_directory(app.static_folder, filename)
 
 @app.route('/', defaults={'path':''})
 @app.route('/<path:path>')

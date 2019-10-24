@@ -29,3 +29,4 @@ df = pd.DataFrame(zip(listImages, listWidth, listhHeight), columns=['name','widt
 print(df)
 
 df.to_sql(name='images', con=engine, if_exists='replace', index=True)
+df.info()
