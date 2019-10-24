@@ -23,7 +23,7 @@
                 <mdb-input type="text" class="text-white" placeholder="Search" aria-label="Search" label navInput waves waves-fixed/>
             </form>
         </mdb-navbar-toggler>
-    </mdb-navbar> 
+    </mdb-navbar>
 </template>
 
 <script>

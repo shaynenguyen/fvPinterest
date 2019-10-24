@@ -23,6 +23,7 @@ def images():
         data.append({
             'id':           i_.index,
             'name':         i_.name,
+            'url':          i_.url,
             'width':        i_.width,
             'height':       i_.height,
             'class':        tempoClass

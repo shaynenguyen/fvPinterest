@@ -5,6 +5,7 @@ class Images(Base):
     __tablename__ = 'images'
     index   = Column(Integer, primary_key=True)
     name    = Column('name',String, unique=True)
+    url     = Column('url',String, unique=True)
     width   = Column('width',Integer, unique=True)
     height  = Column('height',Integer, unique=True)
 

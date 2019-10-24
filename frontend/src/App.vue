@@ -4,24 +4,24 @@
     <mdb-container fluid>
        <mdb-row>
         <!-- Left Navigation -->
-        <mdb-col md="3" sm="3" class="grey lighten-1">          
-          <mHelloWorld/>    
+        <mdb-col md="3" sm="3" class="grey lighten-1">
+          <mHelloWorld/>
         </mdb-col>
         <!-- Router View -->
-        <mdb-col md="9" sm="9">          
+        <mdb-col md="9" sm="9">
           <router-view/>
         </mdb-col>
       </mdb-row>
-    </mdb-container>    
+    </mdb-container>
     <Footer/>
   </div>
 </template>
 
 <script>
-import { mdbContainer, mdbRow, mdbCol } from "mdbvue";
-import mHelloWorld from "@/components/_mHelloWorld";
-import Header from "@/components/_Header";
-import Footer from "@/components/_Footer";
+import { mdbContainer, mdbRow, mdbCol } from 'mdbvue';
+import mHelloWorld from '@/components/_mHelloWorld';
+import Header from '@/components/_Header';
+import Footer from '@/components/_Footer';
 
 export default {
   name: 'App',

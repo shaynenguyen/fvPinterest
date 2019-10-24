@@ -1,12 +1,19 @@
 <template>
     <div>
         <h3>Pinterest Template</h3>
-        <div v-masonry="containerId" transition-duration="0.3s" item-selector=".grid">
+        <div v-masonry origin-left="true"
+            transition-duration="0.3s" 
+            item-selector=".grid-item"
+            horizontal-order="false"
+            fit-width="true"
+            class="grid">
+            <!-- .grid-sizer empty element, only used for element sizing -->
+            <div class="grid-sizer"></div>
             <div v-masonry-tile 
                 v-bind:class="`grid-item ${im.class}`" 
                 v-for="im in images" :key="im.id">
                 <!-- Block item markup -->
-                <img v-bind:src="`http://localhost:5000/uploads/images/${im.name}`" 
+                <img v-bind:src="`${im.url}`" 
                 v-bind:alt="`${im.name}`"/>
             </div>
         </div>
@@ -42,19 +49,15 @@ export default {
 }
 </script>
 <style scoped>
-.grid-item{
-    width:33%;
-    padding:5px;
-    margin:5px;
-    float:left;
-    position: relative;
-}
-.grid-item--width{
-    width:66%;
+.grid-sizer,
+.grid-item { 
+    width: 240px; 
+    padding: 5px;
 }
 
+.grid-item--width2 {  }
+
 .grid-item img{
-    position: relative;
-    width:100%;
+    width: 100%;
 }
 </style>

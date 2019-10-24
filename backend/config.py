@@ -8,6 +8,6 @@ PASS        = 'ZLjSLzz0uuE6PxXy'
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # SERVER LINK
-server_host: 'http://localhost:5000/'
+SERVER_HOST = 'http://localhost:5000/'
 
-api_all_image = server_host + 'api/images'
+API_IMAGES = SERVER_HOST + 'api/images'

@@ -21,7 +21,7 @@ def random_number():
 
 @app.route('/<path:filename>')
 def send_file(filename):
-    return send_from_directory(app.static_folder, filename)
+    return send_from_directory('', filename)
 
 @app.route('/', defaults={'path':''})
 @app.route('/<path:path>')

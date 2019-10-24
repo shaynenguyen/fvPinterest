@@ -1,6 +1,7 @@
 from PIL import Image
 import pandas as pd
-import os
+from config import SERVER_HOST
+import os, re
 
 # Database Stuff
 from database import engine, session
@@ -8,7 +9,8 @@ from models import Images
 
 # Declaration
 path = '../data'
-firstAttempt = True
+ext = r"(\..[^\s]+)"
+
 listWidth, listhHeight = ([] for i in range(2))
 
 listImages = os.listdir(path)
@@ -21,11 +23,14 @@ for img in listImages:
         listhHeight.append(tempDetail[1])
         print(tempDetail)
 
+listUrl = [SERVER_HOST +'data/'+ i for i in listImages]
+listImages = [re.sub(ext,"", i) for i in listImages]
+
 print(listWidth)
 print(listhHeight)
 
 # Create Dataframe
-df = pd.DataFrame(zip(listImages, listWidth, listhHeight), columns=['name','width','height'])
+df = pd.DataFrame(zip(listImages, listUrl, listWidth, listhHeight), columns=['name','url','width','height'])
 print(df)
 
 df.to_sql(name='images', con=engine, if_exists='replace', index=True)

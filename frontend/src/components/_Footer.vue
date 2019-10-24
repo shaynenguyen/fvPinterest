@@ -60,10 +60,10 @@
                 &copy; 2019 Copyright: <a href="/" class="dark-text"> fvPinterest.com </a>
             </mdb-container>
         </div>
-    </mdb-footer>    
+    </mdb-footer>
 </template>
 <script>
-import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue"
+import { mdbFooter, mdbContainer, mdbRow, mdbCol } from 'mdbvue'
 export default {
     name: "Footer",
     components: {
