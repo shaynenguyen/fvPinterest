@@ -4,9 +4,12 @@ from PIL import Image
 
 # Initialize
 website = 'https://www.pexels.com/'
-regex_image = ''
 list_image_url = []
 listWidth, listHeight = ([] for i in range(2))
+
+# Cleaning Regex
+regex_url_suffix = r"(\?[^\s]+)"
+regex_image_suffix = r"$(png|jpeg)"
 
 
 # XPath Expression
