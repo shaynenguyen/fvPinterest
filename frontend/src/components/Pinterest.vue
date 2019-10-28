@@ -14,7 +14,7 @@
                 v-for="im in images" :key="im.id">
                 <!-- Block item markup -->
                 <img v-bind:src="`${im.url}`" 
-                v-bind:alt="`${im.name}`"/>
+                v-bind:alt="`picture ${im.name}`"/>
             </div>
         </div>
     </div>
@@ -23,6 +23,7 @@
 import { VueMasonryPlugin } from 'vue-masonry';
 import axios from 'axios'
 export default {
+    name: 'Pinterest',
     components: {
         VueMasonryPlugin
     },
@@ -51,7 +52,7 @@ export default {
 <style scoped>
 .grid-sizer,
 .grid-item { 
-    width: 240px; 
+    width: 300px; 
     padding: 5px;
 }
 

@@ -1,33 +1,34 @@
 from flask import Flask, render_template, jsonify, send_from_directory
 from flask_cors import CORS
-from random import *
-import requests
 from backend.api import api
+import os
+
+# Initialize
+static_files_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'dist')
+
+server = Flask(__name__,
+                template_folder='./dist',
+                static_folder='./dist/static')
+
+cors = CORS(server, resources={r"/api/*": {"origins": "*"}})
+server.register_blueprint(api, url_prefix='/api')
+
+@server.route('/<path:path>', methods=['GET'])
+def send_static_file(path):
+    return send_from_directory(static_files_dir, path)
+
+@server.route('/hello')
+def hello():
+    data = [
+        {'name': 'Alice', 'birth-year': 1986},
+          {'name': 'Bob', 'birth-year': 1985}
+        ]
+    return jsonify(data)
+
+@server.route('/')
+def index():
+    return send_from_directory(static_files_dir, 'index.html')
 
 
-app = Flask(__name__,
-            static_folder   = './dist/static',
-            template_folder = './dist')
-
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-app.register_blueprint(api, url_prefix='/api')
-
-@app.route('/api/random')
-def random_number():
-    response = {
-        'randomNumber': randint(1, 100)
-    }
-    return jsonify(response)
-
-@app.route('/<path:filename>')
-def send_file(filename):
-    return send_from_directory('', filename)
-
-@app.route('/', defaults={'path':''})
-@app.route('/<path:path>')
-def catch_all(path):
-    if app.debug:
-        return requests.get('http://localhost:8080/{}'.format(path)).text
-    return render_template("index.html")
-
-# https://codeburst.io/full-stack-single-page-application-with-vue-js-and-flask-b1e036315532
+if __name__ == '__main__':
+    server.run(host="127.0.0.1", port="5000")

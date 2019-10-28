@@ -4,15 +4,17 @@ from .database import Base
 class Images(Base):
     __tablename__ = 'images'
     index   = Column(Integer, primary_key=True)
-    name    = Column('name',String, unique=True)
-    url     = Column('url',String, unique=True)
-    width   = Column('width',Integer, unique=True)
-    height  = Column('height',Integer, unique=True)
+    name    = Column('name',String)
+    url     = Column('url',String)
+    width   = Column('width',Integer)
+    height  = Column('height',Integer)
 
-    def __init__(self, name=None, width=None, height=None):
+    def __init__(self, name, url, width, height):
         self.name   = name
+        self.url    = url
         self.width  = width
         self.height = height
+    
 
     # def __repr__(self):
         # return '<Image %r>' % (self.name)

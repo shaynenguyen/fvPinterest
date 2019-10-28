@@ -7,9 +7,9 @@
         <!-- Navbar Toggler  -->
         <mdb-navbar-toggler>
             <mdb-navbar-nav>
-                <mdb-nav-item href="/">Home</mdb-nav-item>
-                <mdb-nav-item href="/about">About</mdb-nav-item>
-                <mdb-nav-item href="/pinterest">Pinterest</mdb-nav-item>
+                <mdb-nav-item exact to="/">Home</mdb-nav-item>
+                <mdb-nav-item to="/about">About</mdb-nav-item>
+                <mdb-nav-item to="/pinterest">Pinterest</mdb-nav-item>
                 <mdb-dropdown tag="li" class="nav-item">
                     <mdb-dropdown-toggle tag="a" navLink color="warning" slot="toggle" waves-fixed>Others</mdb-dropdown-toggle>
                     <mdb-dropdown-menu>
@@ -44,6 +44,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-
-</style>

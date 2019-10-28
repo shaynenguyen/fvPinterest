@@ -20,6 +20,7 @@
 <script>
 import { mdbContainer, mdbRow, mdbCol } from 'mdbvue';
 import mHelloWorld from '@/components/_mHelloWorld';
+import About from '@/components/About';
 import Header from '@/components/_Header';
 import Footer from '@/components/_Footer';
 
@@ -29,6 +30,7 @@ export default {
     mdbContainer,
     mdbCol,
     mdbRow,
+    About,
     Header,
     Footer,
     mHelloWorld

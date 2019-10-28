@@ -6,7 +6,7 @@ import 'bootstrap-css-only/css/bootstrap.min.css'
 import 'mdbvue/build/css/mdb.css'
 
 // import ES6 style
-import {VueMasonryPlugin} from 'vue-masonry'
+import { VueMasonryPlugin } from 'vue-masonry'
 
 import App from './App'
 import router from './router'
@@ -18,6 +18,8 @@ Vue.use(VueMasonryPlugin)
 new Vue({
     el: '#app',
     router,
-    components: { App },
+    components: {
+        App
+    },
     template: '<App/>'
 })

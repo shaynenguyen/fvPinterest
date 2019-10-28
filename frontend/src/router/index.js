@@ -1,19 +1,36 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-const routerOptions = [
-  {path: '/',component:'Home'},
-  {path: '/about',component:'About'},
-  {path: '/pinterest',component:'Pinterest'},
-  {path: '*',component:'NotFound'}
+import VueRouter from 'vue-router'
+
+// Components
+import Home from '@/components/Home'
+import About from '@/components/About'
+import Pinterest from '@/components/Pinterest'
+import NotFound from '@/components/NotFound'
+
+const routerOptions = [{
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/about',
+        name: 'About',
+        component: About
+    },
+    {
+        path: '/pinterest',
+        name: 'Pinterest',
+        component: Pinterest
+    },
+    {
+        path: '*',
+        name: 'NotFound',
+        component: NotFound
+    }
 ]
-const routes = routerOptions.map(route => {
-  return {
-    ...route,
-    component: () => import(`@/components/${route.component}.vue`)
-  }
-})
-Vue.use(Router)
-export default new Router({
-  routes,
-  mode: 'history'
+
+Vue.use(VueRouter)
+export default new VueRouter({
+    routes: routerOptions,
+    mode: 'history'
 })
