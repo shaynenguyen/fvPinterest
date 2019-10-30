@@ -19,11 +19,15 @@ def images():
     # Check start point to query
     if request.args.get('start') is not None:
         # https://scotch.io/bar-talk/processing-incoming-request-data-in-flask
-        images = session.query(Images).filter().limit(SQL_COUNT)
+        sPoint = int(request.args.get('start'))
+        print(type(sPoint))
+        ePoint = sPoint + int(SQL_COUNT)
+        print(type(ePoint))
+        print("START:END points are: ")
+        print(type(sPoint), ePoint)
+        images = session.query(Images).filter()[sPoint:ePoint]
     else:
         images = session.query(Images).all()   
-    
-    print(images)
     
     for i_ in images:
         tempoClass = ''
