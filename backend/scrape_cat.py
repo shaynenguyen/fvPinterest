@@ -1,11 +1,15 @@
-import requests
+import requests, re
 from scrapy.selector import Selector
-from PIL import Image
+import pandas as pd
+
+# Database Stuff
+from database import engine
+from models import Images
 
 # Initialize
 website = 'https://www.pexels.com/'
 list_image_url = []
-listWidth, listHeight = ([] for i in range(2))
+listName, listWidth, listHeight = ([] for i in range(3))
 
 # Cleaning Regex
 regex_url_suffix = r"(\?[^\s]+)"
@@ -14,7 +18,10 @@ regex_image_suffix = r"$(png|jpeg)"
 
 # XPath Expression
 xpath_dictionary = {
-    'images':           r"//div[@class='photos__column']/div/article/a/img/@src"
+    'name'  :           r"//div[@class='photos__column']/div/article/a/img/@alt",
+    'images':           r"//div[@class='photos__column']/div/article/a/img/@src",
+    'height':           r"//div[@class='photos__column']/div/article/a/img/@data-image-height",
+    'width' :           r"//div[@class='photos__column']/div/article/a/img/@data-image-width"
 }
 
 
@@ -28,13 +35,28 @@ if res.status_code == 200:
     xpath_selector  = Selector(text= res.text)
 
     # Push to list
+    listName.extend(xpath_selector.xpath(xpath_dictionary['name']).extract())
     list_image_url.extend(xpath_selector.xpath(xpath_dictionary['images']).extract())
+    listWidth.extend(xpath_selector.xpath(xpath_dictionary['width']).extract())
+    listHeight.extend(xpath_selector.xpath(xpath_dictionary['height']).extract())
 
     print("Total added: ", len(list_image_url))
     print(list_image_url[0:10])
+    print("\n")
+    print(listName)
+    print("\n")
+    print(listHeight)
+    print("\n")
 
-# for iurl in list_image_url:
-#     with Image.open(iurl) as i:
-#         tempDetail = i.size
-#         listWidth.append(tempDetail[0])
-#         listHeight.append(tempDetail[1])
+# Quick clean up
+list_image_url = ['' if (url.find("avatar") != -1) and (url.find("jpeg") == 0) else url for url in list_image_url]
+list_image_url = [re.sub(regex_url_suffix,"",url) for url in list_image_url]
+print(list_image_url)
+
+# To Dataframe
+df = pd.DataFrame(zip(listName, list_image_url, listWidth, listHeight), columns=['name','url','width','height'])
+
+df.dropna(subset=['url'])
+
+df.to_sql(name='images', con=engine, if_exists='replace', index=True)
+df.info()

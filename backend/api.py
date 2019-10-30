@@ -1,6 +1,7 @@
-from flask import Blueprint, abort, jsonify
+from flask import Blueprint, abort, jsonify, request
 from .models import Images
 from .database import session
+from .config import SQL_COUNT
 
 api = Blueprint('api',__name__)
 
@@ -14,7 +15,15 @@ def index():
 @api.route('/images')
 def images():
     data = []
-    images = session.query(Images).all()
+    
+    # Check start point to query
+    if request.args.get('start') is not None:
+        # https://scotch.io/bar-talk/processing-incoming-request-data-in-flask
+        images = session.query(Images).filter().limit(SQL_COUNT)
+    else:
+        images = session.query(Images).all()   
+    
+    print(images)
     
     for i_ in images:
         tempoClass = ''

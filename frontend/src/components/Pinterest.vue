@@ -1,7 +1,9 @@
 <template>
     <div>
         <h3>Pinterest Template</h3>
-        <div v-masonry origin-left="true"
+        <div 
+            v-images-loaded:on.progress="imagesProgress"
+            v-masonry origin-left="true"
             transition-duration="0.3s" 
             item-selector=".grid-item"
             horizontal-order="false"
@@ -21,11 +23,15 @@
 </template>
 <script>
 import { VueMasonryPlugin } from 'vue-masonry';
+import imagesLoaded from 'vue-images-loaded';
 import axios from 'axios'
 export default {
     name: 'Pinterest',
     components: {
         VueMasonryPlugin
+    },
+    directives: {
+        imagesLoaded
     },
     data () {
         return {
@@ -42,6 +48,10 @@ export default {
             .catch(error => {
                 console.log(error)
             })
+        },
+        imagesProgress(instance, image) {
+            const result = image.isLoaded ? 'loaded' : 'broken';
+            console.log('image is '+ result + ' for ' + image.img.src );
         }
     },
     created () {
