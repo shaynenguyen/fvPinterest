@@ -4,11 +4,11 @@
     <mdb-container fluid>
        <mdb-row>
         <!-- Left Navigation -->
-        <mdb-col md="3" sm="3" class="grey lighten-1">
+        <mdb-col md="2" sm="2" class="grey lighten-1">
           <mHelloWorld/>
         </mdb-col>
         <!-- Router View -->
-        <mdb-col md="9" sm="9">
+        <mdb-col md="10" sm="10">
           <router-view/>
         </mdb-col>
       </mdb-row>

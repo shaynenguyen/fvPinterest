@@ -17,7 +17,8 @@
     "vue": "^2.6.10",
     "vue-images-loaded": "^1.1.2",
     "vue-masonry": "^0.11.8",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-scroll-loader": "^1.1.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
