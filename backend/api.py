@@ -12,7 +12,14 @@ def index():
     }
     return jsonify(response)
 
-@api.route('/images')
+@api.route('/countTotalImanges')
+def countTImages():
+    images = session.query(Images).all()
+    
+    return jsonify(len(images))
+
+
+@api.route('/getImages')
 def images():
     data = []
     
@@ -21,23 +28,17 @@ def images():
         # https://scotch.io/bar-talk/processing-incoming-request-data-in-flask
         sPoint = int(request.args.get('start'))
         ePoint = sPoint + SQL_COUNT
-        print("START POINT: ", sPoint)
         images = session.query(Images).filter()[sPoint:ePoint]
     else:
         images = session.query(Images).all()   
     
     for i_ in images:
-        tempoClass = ''
-        if i_.width > i_.height:
-            tempoClass = 'grid-item--width2'
         data.append({
             'id':           i_.index,
             'name':         i_.name,
             'url':          i_.url,
             'width':        i_.width,
-            'height':       i_.height,
-            'class':        tempoClass
+            'height':       i_.height
         })
-    print("LIST: ", len(images))
 
     return jsonify(data)

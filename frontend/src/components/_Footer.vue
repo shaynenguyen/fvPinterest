@@ -1,6 +1,6 @@
 <template>
     <!-- Footer -->
-    <mdb-footer color="blue-grey" class="page-footer font-small lighten-5 mt-0" styles="margin-top: 0 !important;">
+    <mdb-footer color="blue-grey" class="page-footer font-small lighten-5 mt-0">
         <div style="backgroundColor: #21d192">
             <!-- Footer Section 1 -->
             <mdb-container class="text-left">
